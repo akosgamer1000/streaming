@@ -19,5 +19,6 @@ datasource db {
       szero String
       Hossz Int 
       ar Int
+      rate Int @default(0)
 
   }

@@ -6,6 +6,7 @@ export class CreateSongDto {
     szero :string
      Hossz :number
     ar :number
+    rate:number
     
 
 }

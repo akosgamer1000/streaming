@@ -55,6 +55,13 @@ export class SongService {
 
       })
   }
+  findtop(count:number){
+    return this.db.steaming.findMany({
+      orderBy :{
+        rate :'desc'
+      }
+    })
+  }
   }
 
 
