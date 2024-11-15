@@ -55,12 +55,31 @@ export class SongService {
 
       })
   }
-  findtop(count:number){
+  findtop(count:string){
     return this.db.steaming.findMany({
       orderBy :{
-        rate :'desc'
+        rate :'desc' 
+        
+      },
+      take: parseInt(count)
+    
+      
+      
+    })
+  }
+  author(){
+    return this.db.steaming.groupBy({
+      by:['szero'],
+      _count:{
+        szero:true
+      },
+      orderBy:{
+        _count:{
+          szero:"desc"
+        }
       }
     })
+    
   }
   }
 
