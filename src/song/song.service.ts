@@ -2,14 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
 import { PrismaService } from '../prisma.service';
-
+interface rename{
+  artist:string
+  numberofsongs:number
+}
 @Injectable()
+
 export class SongService {
   db: PrismaService;
   constructor(db: PrismaService) {
     this.db = db;
   }
-
+  
   create(createSongDto: CreateSongDto) {
     return this.db.steaming.create({
       data: createSongDto
@@ -67,19 +71,25 @@ export class SongService {
       
     })
   }
-  author(){
-    return this.db.steaming.groupBy({
-      by:['szero'],
+    async author(){
+    const z=await this.db.steaming.groupBy({
+      by:['szero'] ,
       _count:{
         szero:true
       },
       orderBy:{
-        _count:{
-          szero:"desc"
+        _count :{
+          szero:"desc" 
         }
       }
     })
-    
+      const results=z.map(item=>{
+        return{ 
+          author:item.szero,
+          numberofsongs:item._count
+        }
+      })
+      return results
   }
   }
 
