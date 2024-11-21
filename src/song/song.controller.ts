@@ -23,7 +23,7 @@ export class SongController {
   }
 
   @Get('top')
-  findTop(@Query('count') coun:string){
+  findTop(@Query('count') coun:string="10"){
       return this.songService.findtop(coun)
   }
   @Get('popularArtists')
