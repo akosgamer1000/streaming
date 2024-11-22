@@ -20,9 +20,11 @@ datasource db {
       Hossz Int 
       ar Int
       rate Int @default(0)
+      playlist playlist[]
 
   }
   model playlist{
     id Int @id @default(autoincrement())
     name String
+    songs steaming[]
   }
